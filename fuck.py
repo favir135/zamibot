@@ -1,10 +1,10 @@
-
+import configparser
 from discord.ext import commands
 from datetime import datetime, timedelta, timezone
 
 # 自分のBotのアクセストークンに置き換えてください
 TOKEN = 'NzEzNTk5ODAwODA0NjM4ODIw.Xsidmg.CTWx-Z3Q7iM4xAZVeeBL583JGoE'
-path = "data/channel.txt"
+path = "config.txt"
 
 l_strip = []
 MYID = 749127899981807686
@@ -19,28 +19,10 @@ bot = commands.Bot(command_prefix='wd.')
 1 サーバーid , 話題提供チャンネルのid ,
 '''
 
-
-def readsettings():
-    global l_strip
-    with open(path) as f:
-        l_strip = [int(s.strip()) for s in f.readlines()]
-        print(l_strip)
-
-
-def writesettings(channelid):
-    global l_strip
-    l_strip.append(channelid)
-
-    with open(path, mode="w") as f:
-        line = ""
-        for id in l_strip:
-            line = line + str(id) + "\n"
-        print(line)
-        f.write(line)
-        return str(id) in line
-
-
-# def parsetopic(channel):
+bot.config = configparser.ConfigParser()
+bot.config.read(path, encoding='utf-8')
+    
+    # def parsetopic(channel):
 
 
 # 起動時に動作する処理
@@ -72,7 +54,6 @@ async def on_message(message):
 async def test(ctx, arg):
     print("fuck")
     await ctx.send(arg)
-
 
 @bot.command()
 async def add(ctx):

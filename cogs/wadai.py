@@ -13,6 +13,7 @@ class Wadai(commands.Cog):
         print("wadai init")
         self.l_strip = [697723723016306712, 0]
 
+
     def randomwadai(self):
         return "ばーか"
 
@@ -35,11 +36,11 @@ class Wadai(commands.Cog):
         await self.wadaicheck(self.l_strip)
         await asyncio.sleep(300)
         await self.wadailoop()
+        #idlist = bot.config.
 
     @commands.command()
     async def wadainow(self, ctx):
         await ctx.send(self.randomwadai())
-
 
 def setup(bot):
     bot.add_cog(Wadai(bot))
