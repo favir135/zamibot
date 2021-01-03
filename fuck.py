@@ -1,6 +1,5 @@
 
 from discord.ext import commands
-from datetime import datetime, timedelta, timezone
 
 # 自分のBotのアクセストークンに置き換えてください
 TOKEN = 'NzEzNTk5ODAwODA0NjM4ODIw.Xsidmg.CTWx-Z3Q7iM4xAZVeeBL583JGoE'
@@ -51,6 +50,7 @@ async def on_ready():
     readsettings()
     bot.load_extension('cogs.greet')
     bot.load_extension('cogs.wadai')
+    bot.load_extension('cogs.stats')
     wadai = bot.get_cog('Wadai')
     await wadai.wadailoop()
 

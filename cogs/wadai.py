@@ -1,6 +1,6 @@
 from discord.ext import commands
 import asyncio
-from datetime import datetime, timedelta, timezone
+from datetime import datetime
 MYID = 749127899981807686
 TESTID = 713599800804638820
 
