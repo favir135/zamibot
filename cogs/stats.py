@@ -10,6 +10,9 @@ class Stats(commands.Cog):
 
     @commands.command()
     async def stats(self, ctx):
+        """
+        過去7日間の会話数を表示
+        """
         counter = 0
         async with ctx.typing():
 
@@ -17,11 +20,13 @@ class Stats(commands.Cog):
             dt = datetime.datetime(
                 d_day.year, d_day.month, d_day.day, 15, 0, 0, 0)
             print(d_day)
+            idset = set()
             async for message in ctx.history(before=dt, after=dt + datetime.timedelta(days=-7)):
                 if (not message.author.bot) and (not message.author.system):
                     counter += 1
+                    idset.add(message.author.id)
             await ctx.send('done!')
-        await ctx.send("過去7日間の会話数は" + str(counter) + "\n1日平均は" + str(math.floor(counter / 7 * 100) / 100))
+        await ctx.send("過去7日間の会話数は" + str(counter) + "\n1日平均は" + str(math.floor(counter / 7 * 100) / 100) + "\n過去７日間のアクティブユーザー数は" + str(len(idset)))
 
 
 def setup(bot):
