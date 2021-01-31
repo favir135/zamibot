@@ -1,9 +1,11 @@
 import configparser
 from discord.ext import commands
+import dotenv
+import os
 
-# 自分のBotのアクセストークンに置き換えてください
-TOKEN = 'NzEzNTk5ODAwODA0NjM4ODIw.Xsidmg.CTWx-Z3Q7iM4xAZVeeBL583JGoE'
+# 自分のBotのアクセストークンに置き換えてくださ
 path = "config.ini"
+dotenv_path = ".env"
 
 l_strip = []
 MYID = 749127899981807686
@@ -22,6 +24,9 @@ bot.config = configparser.ConfigParser()
 bot.config.read(path, encoding='utf-8')
 print(bot.config.sections())
 
+dotenv.load_dotenv(dotenv_path)
+TOKEN = os.environ.get("BOT_TOKEN")
+print(TOKEN)
 # def parsetopic(channel):
 
 

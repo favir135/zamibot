@@ -27,7 +27,7 @@ class Wadai(commands.Cog):
                 hst = await channel.history(limit=1).flatten()
                 if hst[0].author.id != MYID and hst[0].author.id != TESTID:
                     print(hst[0].created_at)
-                    if (datetime.utcnow() - hst[0].created_at).total_seconds() >= 72:
+                    if (datetime.utcnow() - hst[0].created_at).total_seconds() >= 7200:
                         await channel.send(self.randomwadai())
                         break
 
@@ -40,7 +40,7 @@ class Wadai(commands.Cog):
                 self.ahoset.add(self.wdch)
         print(self.ahoset)
         await self.wadaicheck(self.ahoset)
-        await asyncio.sleep(3)
+        await asyncio.sleep(300)
         await self.wadailoop()
 
     @commands.command()

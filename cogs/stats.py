@@ -21,7 +21,7 @@ class Stats(commands.Cog):
                 d_day.year, d_day.month, d_day.day, 15, 0, 0, 0)
             print(d_day)
             idset = set()
-            async for message in ctx.history(before=dt, after=dt + datetime.timedelta(days=-7)):
+            async for message in ctx.history(before=dt, after=dt - datetime.timedelta(days=7)):
                 if (not message.author.bot) and (not message.author.system):
                     counter += 1
                     idset.add(message.author.id)
