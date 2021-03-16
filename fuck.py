@@ -13,7 +13,7 @@ TESTID = 713599800804638820
 
 # 接続に必要なオブジェクトを生成
 
-bot = commands.Bot(command_prefix='wd.')
+bot = commands.Bot(command_prefix='zm.')
 
 '''
 設定
