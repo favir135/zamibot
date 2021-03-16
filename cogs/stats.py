@@ -16,16 +16,23 @@ class Stats(commands.Cog):
         counter = 0
         async with ctx.typing():
 
-            d_day = datetime.date.today() + datetime.timedelta(days=-1)
+            d_day = datetime.datetime.now(datetime.timezone(
+                datetime.timedelta(hours=9))) + datetime.timedelta(days=-1)
             dt = datetime.datetime(
                 d_day.year, d_day.month, d_day.day, 15, 0, 0, 0)
-            print(d_day)
+            print(dt)
+            fucktime = dt - datetime.timedelta(days=7)
+            print(fucktime)
             idset = set()
-            async for message in ctx.history(before=dt, after=dt - datetime.timedelta(days=7)):
-                if (not message.author.bot) and (not message.author.system):
+            hst = await ctx.history(before=dt, after=fucktime, limit=10000).flatten()
+            print(str(len(hst)))
+            for message in hst:
+                auth = message.author
+                if (not auth.bot) and (not auth.system):
                     counter += 1
-                    idset.add(message.author.id)
+                    idset.add(auth.id)
             await ctx.send('done!')
+            # print(idset)
         await ctx.send("過去7日間の会話数は" + str(counter) + "\n1日平均は" + str(math.floor(counter / 7 * 100) / 100) + "\n過去７日間のアクティブユーザー数は" + str(len(idset)))
 
 

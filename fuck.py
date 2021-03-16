@@ -39,7 +39,7 @@ async def on_ready():
     bot.load_extension('cogs.wadai')
     bot.load_extension('cogs.stats')
     wadai = bot.get_cog('Wadai')
-    await wadai.wadailoop()
+    # await wadai.wadailoop()
 
 
 # メッセージ受信時に動作する処理
