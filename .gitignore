@@ -131,4 +131,4 @@ dmypy.json
 Pipfile
 Pipfile.lock
 .vscode/
-__pycache__/
+config.ini

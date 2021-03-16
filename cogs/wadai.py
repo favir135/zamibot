@@ -1,5 +1,6 @@
 from discord.ext import commands
 import asyncio
+import random
 from datetime import datetime
 MYID = 749127899981807686
 TESTID = 713599800804638820
@@ -14,7 +15,10 @@ class Wadai(commands.Cog):
         self.l_strip = [697723723016306712, 0]
 
     def randomwadai(self):
-        return "ばーか"
+        f = open("data/wadai.txt", "r", encoding="utf-8")
+        datalist = f.readlines()
+        print(len(datalist))
+        return(datalist[random.randint(0, len(datalist) - 1)])
 
     async def wadaicheck(self, args):
         global MYID, TESTID
