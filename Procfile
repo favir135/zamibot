@@ -1,1 +1,1 @@
-worker: python3 fuck.py
+Worker: python fuck.py
