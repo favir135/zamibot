@@ -38,7 +38,7 @@ async def on_ready():
     bot.load_extension('cogs.greet')
     bot.load_extension('cogs.wadai')
     bot.load_extension('cogs.stats')
-    wadai = bot.get_cog('Wadai')
+    # wadai = bot.get_cog('Wadai')
     # await wadai.wadailoop()
 
 
