@@ -20,8 +20,7 @@ class Wadai(commands.Cog):
         print(len(datalist))
         return(datalist[random.randint(0, len(datalist) - 1)])
 
-
-'''
+    '''
     async def wadaicheck(self, args):
         global MYID, TESTID
         for id in args:
@@ -48,15 +47,14 @@ class Wadai(commands.Cog):
          await self.wadaicheck(self.ahoset)
          await asyncio.sleep(300)
          await self.wadailoop()
-'''
+    '''
 
-
-@commands.command()
-async def wadainow(self, ctx):
-    """
+    @commands.command()
+    async def wadainow(self, ctx):
+        """
         話題を今すぐ出す
         """
-    await ctx.send(self.randomwadai())
+        await ctx.send(self.randomwadai())
 
 
 def setup(bot):
