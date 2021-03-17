@@ -13,8 +13,13 @@ TESTID = 713599800804638820
 
 # 接続に必要なオブジェクトを生成
 
-bot = commands.Bot(command_prefix='zm.')
 
+class Zamibot(commands.Bot):
+    async def error(self, ctx, e):
+        await ctx.send("エラーが発生しました。ﾊﾞｰｶﾊﾞｰｶ。\n```python\n" + str(e) + "```")
+
+
+bot = Zamibot(command_prefix='zm.')
 '''
 設定
 1 サーバーid , 話題提供チャンネルのid ,
@@ -51,14 +56,17 @@ async def on_message(message):
     # 「/neko」と発言したら「にゃーん」が返る処理
     if message.content == '/neko':
         await message.channel.send('にゃーん')
-
-    await bot.process_commands(message)
+    try:
+        await bot.process_commands(message)
+    except Exception as e:
+        await bot.error(message.channel, e)
 
 
 @bot.command()
 async def test(ctx, arg):
     print("fuck")
     await ctx.send(arg)
+
 
 '''
 @bot.command()

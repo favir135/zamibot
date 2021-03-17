@@ -10,15 +10,17 @@ class Wadai(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self._last_member = None
         print("wadai init")
         self.l_strip = [697723723016306712, 0]
-
-    def randomwadai(self):
         f = open("data/wadai.txt", "r", encoding="utf-8")
-        datalist = f.readlines()
-        print(len(datalist))
-        return(datalist[random.randint(0, len(datalist) - 1)])
+        self.datalist = f.readlines()
+        print(len(self.datalist))
+
+    def randomwadai(self, num):
+        d = []
+        for i in range(num):
+            d.append(self.datalist[random.randint(0, len(self.datalist) - 1)])
+        return(d)
 
     '''
     async def wadaicheck(self, args):
@@ -50,11 +52,24 @@ class Wadai(commands.Cog):
     '''
 
     @commands.command()
-    async def wadainow(self, ctx):
-        """
-        話題を今すぐ出す
-        """
-        await ctx.send(self.randomwadai())
+    async def wadainow(self, ctx, *args):
+        try:
+            """
+            話題を今すぐ出す
+            """
+            if args == ():
+                num = 3
+            else:
+                num = int(args[0])
+            d = self.randomwadai(num)
+            text = ""
+            i = 1
+            for s in d:
+                text += str(i) + ": " + s
+                i += 1
+            await ctx.send(text)
+        except Exception as e:
+            await self.bot.error(ctx, e)
 
 
 def setup(bot):
