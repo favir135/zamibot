@@ -1,6 +1,7 @@
 from discord.ext import commands
 import datetime
 import math
+import time
 
 
 class Stats(commands.Cog):
@@ -12,7 +13,7 @@ class Stats(commands.Cog):
     async def stats(self, ctx):
         """過去7日間の会話数を表示"""
         try:
-
+            basetime = time.time()
             counter = 0
             async with ctx.typing():
 
@@ -24,17 +25,16 @@ class Stats(commands.Cog):
                 fucktime = dt - datetime.timedelta(days=7)
                 print(fucktime)
                 idset = set()
-                hst = await ctx.history(before=dt, after=fucktime, limit=10000).flatten()
+                hst = [message async for message in ctx.history(before=dt, after=fucktime, limit=10000) if not (message.author.bot or message.author.system)]
                 print(str(len(hst)))
                 for message in hst:
-                    auth = message.author
-                    if (not auth.bot) and (not auth.system):
-                        counter += 1
-                        idset.add(auth.id)
-                # print(idset)
-            await ctx.send("過去7日間の会話数は" + str(counter) + "\n1日平均は" + str(math.floor(counter / 7 * 100) / 100) + "\n過去７日間のアクティブユーザー数は" + str(len(idset)))
+                    idset.add(message.author.id)
+                counter = len(hst)
+            elapsed = math.floor((time.time() - basetime) * 100) / 100
+            print(elapsed)
+            await ctx.send("過去7日間の会話数は" + str(counter) + "\n1日平均は" + str(math.floor(counter / 7 * 100) / 100) + "\n過去７日間のアクティブユーザー数は" + str(len(idset)) + "\n`" + str(elapsed) + " 秒で実行`")
         except Exception as e:
-            await self.bot.error(e)
+            await self.bot.error(ctx, e)
 
 
 def setup(bot):
