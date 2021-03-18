@@ -53,7 +53,7 @@ class Wadai(commands.Cog):
 
     @commands.command()
     async def wadainow(self, ctx, *args):
-        """zm.wadai [話題数(3)] 話題を今すぐ出す"""
+        """ [話題数(3)] 話題を今すぐ出す"""
         try:
 
             if args == ():
