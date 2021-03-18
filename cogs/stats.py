@@ -11,9 +11,7 @@ class Stats(commands.Cog):
     @commands.command()
     async def stats(self, ctx):
         try:
-            """
-            過去7日間の会話数を表示
-            """
+            """過去7日間の会話数を表示"""
             counter = 0
             async with ctx.typing():
 
