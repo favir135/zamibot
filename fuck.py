@@ -67,7 +67,6 @@ async def test(ctx, arg):
     print("fuck")
     await ctx.send(arg)
 
-
 '''
 @bot.command()
 async def add(ctx):

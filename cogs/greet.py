@@ -15,7 +15,7 @@ class Greetings(commands.Cog):
 
     @commands.command()
     async def hello(self, ctx):
-        """Says hello"""
+        """helloと言う"""
         member = ctx.author
         if self._last_member is None or self._last_member.id != member.id:
             await ctx.send('Hello {0.name}~'.format(member))

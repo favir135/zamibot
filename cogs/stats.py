@@ -10,8 +10,9 @@ class Stats(commands.Cog):
 
     @commands.command()
     async def stats(self, ctx):
+        """過去7日間の会話数を表示"""
         try:
-            """過去7日間の会話数を表示"""
+
             counter = 0
             async with ctx.typing():
 
@@ -30,7 +31,6 @@ class Stats(commands.Cog):
                     if (not auth.bot) and (not auth.system):
                         counter += 1
                         idset.add(auth.id)
-                await ctx.send('done!')
                 # print(idset)
             await ctx.send("過去7日間の会話数は" + str(counter) + "\n1日平均は" + str(math.floor(counter / 7 * 100) / 100) + "\n過去７日間のアクティブユーザー数は" + str(len(idset)))
         except Exception as e:
