@@ -42,7 +42,8 @@ async def on_ready():
     print('ログインしました')
     bot.load_extension('cogs.greet')
     bot.load_extension('cogs.wadai')
-    bot.load_extension('cogs.stats')
+    bot.load_extension('cogs.util')
+    bot.load_extension('cogs.play')
     # wadai = bot.get_cog('Wadai')
     # await wadai.wadailoop()
 

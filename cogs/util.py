@@ -4,7 +4,7 @@ import math
 import time
 
 
-class Stats(commands.Cog):
+class Utility(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         print("stats init")
@@ -27,9 +27,14 @@ class Stats(commands.Cog):
                 idset = set()
                 hst = [message async for message in ctx.history(before=dt, after=fucktime, limit=10000) if not (message.author.bot or message.author.system)]
                 print(str(len(hst)))
+                counter2 = 0
                 for message in hst:
+                    if not (message.author.bot or message.author.system):
+                        counter2 += 1
                     idset.add(message.author.id)
+
                 counter = len(hst)
+                print(counter2)
             elapsed = math.floor((time.time() - basetime) * 100) / 100
             print(elapsed)
             await ctx.send("過去7日間の会話数は" + str(counter) + "\n1日平均は" + str(math.floor(counter / 7 * 100) / 100) + "\n過去７日間のアクティブユーザー数は" + str(len(idset)) + "\n`" + str(elapsed) + " 秒で実行`")
@@ -38,4 +43,4 @@ class Stats(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Stats(bot))
+    bot.add_cog(Utility(bot))
