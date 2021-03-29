@@ -2,6 +2,7 @@ from discord.ext import commands
 import datetime
 import math
 import time
+import re
 
 
 class Utility(commands.Cog):
@@ -10,9 +11,12 @@ class Utility(commands.Cog):
         print("stats init")
 
     @commands.command()
-    async def stats(self, ctx):
+    async def stats(self, ctx, *args):
         """過去7日間の会話数を表示"""
         try:
+            if args != ():
+                ctx = self.bot.get_channel(int(re.search(r'[0-9]+', args[0]).group()))
+                print(ctx)
             basetime = time.time()
             counter = 0
             async with ctx.typing():
