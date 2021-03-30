@@ -14,12 +14,13 @@ class Utility(commands.Cog):
     async def stats(self, ctx, *args):
         """過去7日間の会話数を表示"""
         try:
+            ctx2 = ctx
             if args != ():
                 ctx = self.bot.get_channel(int(re.search(r'[0-9]+', args[0]).group()))
                 print(ctx)
             basetime = time.time()
             counter = 0
-            async with ctx.typing():
+            async with ctx2.typing():
 
                 d_day = datetime.datetime.now(datetime.timezone(
                     datetime.timedelta(hours=9))) + datetime.timedelta(days=-1)
@@ -41,7 +42,7 @@ class Utility(commands.Cog):
                 print(counter2)
             elapsed = math.floor((time.time() - basetime) * 100) / 100
             print(elapsed)
-            await ctx.send("過去7日間の会話数は" + str(counter) + "\n1日平均は" + str(math.floor(counter / 7 * 100) / 100) + "\n過去７日間のアクティブユーザー数は" + str(len(idset)) + "\n`" + str(elapsed) + " 秒で実行`")
+            await ctx2.send("過去7日間の会話数は" + str(counter) + "\n1日平均は" + str(math.floor(counter / 7 * 100) / 100) + "\n過去７日間のアクティブユーザー数は" + str(len(idset)) + "\n`" + str(elapsed) + " 秒で実行`")
         except Exception as e:
             await self.bot.error(ctx, e)
 
