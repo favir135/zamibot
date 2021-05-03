@@ -13,6 +13,14 @@ class Greetings(commands.Cog):
         if channel is not None:
             await channel.send('Welcome {0.mention}.'.format(member))
 
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if message.content == "あほ":
+            member = message.author
+            channel = member.guild.system_channel
+            if channel is not None:
+                await channel.send('Welcome {0.mention}.'.format(member))
+
     @commands.command()
     async def hello(self, ctx):
         """helloと言う"""
