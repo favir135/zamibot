@@ -1,0 +1,1 @@
+Discord botの残骸
